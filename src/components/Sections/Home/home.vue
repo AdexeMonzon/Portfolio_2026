@@ -13,16 +13,20 @@
                 </div>
             </header>
         </div>
-        
+        <div>
+            <Proyects />
+        </div>
     </section>
 </template>
 
 <script>
 import Navbar from '../../share/nav-component.vue';
+import Proyects from '../Proyects/index.vue';
     export default {
         name: 'Home',
         components: {
             Navbar,
+            Proyects
         }
     }
 </script>
