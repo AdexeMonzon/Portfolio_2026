@@ -13,20 +13,27 @@
                 </div>
             </header>
         </div>
+        <div class="h-[70vh] w-full flex items-center justify-center border-t border-white/5 mt-32">
+            <p class="text-white/20 font-mono text-sm"></p>
+        </div>
         <div>
             <Proyects />
         </div>
+
     </section>
 </template>
 
 <script>
 import Navbar from '../../share/nav-component.vue';
 import Proyects from '../Proyects/index.vue';
+import Swiper from '../../share/swiper-slider.vue';
+
     export default {
         name: 'Home',
         components: {
             Navbar,
-            Proyects
+            Proyects,
+            Swiper
         }
     }
 </script>
