@@ -2,11 +2,9 @@
     <main class="main-container">
         <Navbar />
 
-        <div class="particles-wrapper">
-            <div class="particles-glow"></div>
-
-            <div v-for="n in 70" :key="n" class="particle particle-item"></div>
-        </div>
+        <LightPilar class="particles-wrapper" topColor="#216006" bottomColor="#00A8F0" :intensity="0.7" :rotationSpeed="0.3"
+            :glowAmount="0.002" :pillarWidth="3" :pillarHeight="0.4" :noiseIntensity="0.5"
+            :pillarRotation="25" :interactive="false" mixBlendMode="screen" />
 
         <section id="home" class="hero-section">
             <div class="hero-container">
@@ -62,6 +60,7 @@ import Experience from '../Experience/index.vue';
 import Contact from '../Contact/index.vue';
 import Skills from '../Skills/index.vue';
 import Swiper from '../../share/swiper-slider.vue';
+import LightPilar from '../../share/LightPilar.vue';
 import { gsap } from 'gsap';
 
 export default {
@@ -73,35 +72,14 @@ export default {
         Studies,
         Experience,
         Contact,
-        Swiper
+        Swiper,
+        LightPilar
     },
     mounted() {
         this.initParticles();
     },
     methods: {
         initParticles() {
-            const particles = document.querySelectorAll('.particle');
-
-            particles.forEach((p) => {
-                gsap.set(p, {
-                    x: "random(0, " + window.innerWidth + ")",
-                    y: "random(0, " + window.innerHeight + ")",
-                    scale: "random(0.5, 2.5)",
-                    opacity: "random(0.1, 0.6)",
-                    width: "random(3, 8)",
-                    height: "random(3, 8)",
-                });
-
-                gsap.to(p, {
-                    x: "+=random(-100, 100)",
-                    y: "+=random(-100, 100)",
-                    opacity: "random(0.1, 0.8)",
-                    duration: "random(4, 12)",
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut"
-                });
-            });
         }
     }
 }
@@ -109,10 +87,8 @@ export default {
 
 <style scoped>
 .main-container {
-    background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: sans-serif;
-    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .particles-wrapper {
@@ -120,36 +96,8 @@ export default {
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    background-color: var(--bg-primary);
     overflow: hidden;
-    transition: background-color 0.5s ease;
-}
-
-.particles-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80vw;
-    height: 80vw;
-    opacity: 0.1;
-    filter: blur(150px);
-    border-radius: 50%;
-}
-
-.particle-item {
-    position: absolute;
-    border-radius: 50%;
-    background-color: var(--accent);
-    filter: blur(2px);
-    opacity: 0.6;
-    box-shadow: 0 0 10px var(--accent);
-}
-
-@media (min-width: 768px) {
-    .particle-item {
-        filter: blur(4px);
-    }
+    filter: blur(11px);
 }
 
 .hero-section {
@@ -224,7 +172,6 @@ export default {
 
 .hero-title-greeting {
     display: block;
-    color: var(--text-secondary);
 }
 
 .hero-title-name {
@@ -294,7 +241,7 @@ export default {
     height: auto;
     object-fit: contain;
     transition: transform 0.5s ease, filter 0.5s ease;
-    filter: drop-shadow(0 0 8px rgba(0,0,0,0.5)) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5)) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
     mask-image: radial-gradient(ellipse at center, black 50%, transparent 95%);
     z-index: 10;
 }
