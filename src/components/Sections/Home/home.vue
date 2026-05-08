@@ -3,7 +3,7 @@
         <Navbar />
         
 
-        <LightPilar class="particles-wrapper" topColor="#216006" bottomColor="#00A8F0" :intensity="0.7" :rotationSpeed="0.3"
+        <LightPilar class="particles-wrapper" topColor="#216006" bottomColor="#00A8F0" :intensity="0.7" :rotationSpeed="0.5"
             :glowAmount="0.002" :pillarWidth="3" :pillarHeight="0.4" :noiseIntensity="0.5"
             :pillarRotation="25" :interactive="false" mixBlendMode="screen" />
 

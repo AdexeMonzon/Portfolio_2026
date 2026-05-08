@@ -1,50 +1,63 @@
 <template>
-    <div class="nav-wrapper" :class="{ 'scrolled-wrapper': isScrolled }">
-        <nav ref="navContainer" class="nav-container" :class="{ 'scrolled-nav': isScrolled, 'top-nav': !isScrolled }">
+    <div class="nav-wrapper scrolled-wrapper">
+        <GlassSurface
+            ref="navContainer"
+            width="90%"
+            height="64px"
+            :borderRadius="10"
+            :blur="16"
+            :backgroundOpacity="0.6"
+            :borderWidth="0.1"
+            class="pointer-events-auto transition-all duration-500 ease-in-out font-sans"
+            style="max-width: 72rem;"
+        >
+            <div class="flex justify-between items-center w-full px-4 md:px-8">
+                <div class="nav-logo group">
+                    <div class="nav-logo-dot"></div>
+                    <span class="nav-logo-text">Adexe Monzón</span>
+                </div>
 
-            <div class="nav-logo group">
-                <div class="nav-logo-dot"></div>
-                <span class="nav-logo-text">Adexe Monzón</span>
+                <div class="nav-links">
+                    <a href="#home" class="nav-item">Inicio</a>
+                    <a href="#skills" class="nav-item">Tecnologías</a>
+                    <a href="#projects" class="nav-item">Proyectos</a>
+                    <a href="#studies" class="nav-item">Estudios</a>
+                    <a href="#experience" class="nav-item">Experiencia</a>
+                    <a href="#contact" class="nav-item">Contacto</a>
+                    <button @click="toggleTheme" class="theme-toggle" aria-label="Cambiar tema">
+                        <svg v-if="isDark" class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg v-else class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="nav-spacer"></div>
             </div>
-
-            <div class="nav-links">
-                <a href="#home" class="nav-item">Inicio</a>
-                <a href="#skills" class="nav-item">Tecnologías</a>
-                <a href="#projects" class="nav-item">Proyectos</a>
-                <a href="#studies" class="nav-item">Estudios</a>
-                <a href="#experience" class="nav-item">Experiencia</a>
-                <a href="#contact" class="nav-item">Contacto</a>
-                <button @click="toggleTheme" class="theme-toggle" aria-label="Cambiar tema">
-                    <svg v-if="isDark" class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                    <svg v-else class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                </button>
-            </div>
-
-            <div class="nav-spacer"></div>
-        </nav>
+        </GlassSurface>
     </div>
 </template>
 
 <script>
 import { gsap } from 'gsap';
+import GlassSurface from './GlassSurface.vue';
 
 export default {
     name: 'Navbar',
+    components: {
+        GlassSurface
+    },
 
     data() {
         return {
-            isScrolled: false,
             isDark: true
         };
     },
 
     mounted() {
         this.initAnimation();
-        window.addEventListener('scroll', this.handleScroll);
         
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
@@ -54,7 +67,6 @@ export default {
     },
 
     unmounted() {
-        window.removeEventListener('scroll', this.handleScroll);
     },
 
     methods: {
@@ -71,8 +83,9 @@ export default {
 
         initAnimation() {
             const tl = gsap.timeline();
+            const navElement = this.$refs.navContainer.$el || this.$refs.navContainer;
 
-            tl.from(this.$refs.navContainer, {
+            tl.from(navElement, {
                 y: -100,
                 opacity: 0,
                 duration: 1,
@@ -88,10 +101,6 @@ export default {
                         ease: 'back.out(1.7)',
                     },
                     "-=0.7");
-        },
-
-        handleScroll() {
-            this.isScrolled = window.scrollY > 50;
         }
     }
 };
@@ -113,41 +122,6 @@ export default {
 
 .scrolled-wrapper {
     padding-top: 1rem;
-}
-
-.nav-container {
-    pointer-events: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.5s ease;
-    font-family: sans-serif;
-}
-
-.top-nav {
-    width: 100%;
-    padding: 1.5rem 2rem;
-    border-radius: 0;
-    background: linear-gradient(to bottom, var(--bg-glass), transparent);
-    border: 1px solid transparent;
-}
-
-@media (min-width: 768px) {
-    .top-nav {
-        padding-left: 4rem;
-        padding-right: 4rem;
-    }
-}
-
-.scrolled-nav {
-    width: 90%;
-    max-width: 72rem; 
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    backdrop-filter: blur(24px);
-    background-color: var(--bg-nav);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .nav-logo {
