@@ -1,22 +1,16 @@
 <template>
-    <swiper :pagination="true" :modules="modules" class="mySwiper w-full h-full">
-        <swiper-slide v-for="(image, index) in images" :key="index" class="w-full flex justify-center">
-            <img :src="image" alt="" class="w-full h-64 md:h-100 object-cover rounded-xl shadow-lg">
+    <swiper :pagination="true" :modules="modules" class="slider-wrapper">
+        <swiper-slide v-for="(image, index) in images" :key="index" class="slider-slide">
+            <img :src="image" alt="" class="slider-image">
         </swiper-slide>
     </swiper>
 </template>
 <script>
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
-// Import Swiper styles
 import 'swiper/css';
-
 import 'swiper/css/pagination';
 
-// import './style.css';
-
-// import required modules
 import { Pagination } from 'swiper/modules';
 
 export default {
@@ -37,3 +31,30 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.slider-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.slider-slide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.slider-image {
+    width: 100%;
+    height: 16rem;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 768px) {
+    .slider-image {
+        height: 25rem;
+    }
+}
+</style>

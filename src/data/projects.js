@@ -24,14 +24,4 @@ export const projectsData = [
             '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" title="Amazon Web Services" />'
         ]
     },
-    { 
-        id: 2, 
-        title: 'E-commerce UI', 
-        category: 'Frontend', 
-        img: '/limpieza register 2.jpg', 
-        githubFrontend: 'https://github.com/tu-usuario/repo', 
-        githubBackend: '', 
-        website: 'https://demo.com', 
-        desc: 'Interfaz moderna para tienda online...' 
-    },
 ];

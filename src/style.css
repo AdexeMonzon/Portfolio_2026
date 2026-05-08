@@ -1,7 +1,54 @@
 @import "tailwindcss";
 
+:root {
+  --bg-primary: #020617;
+  --bg-secondary: #0f172a;
+  --bg-card: rgba(15, 23, 42, 0.8);
+  --bg-nav: rgba(15, 23, 42, 0.8);
+  --bg-glass: rgba(2, 6, 23, 0.8);
+  
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  
+  --accent: #34d399;
+  --accent-hover: #10b981;
+  
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(52, 211, 153, 0.4);
+
+  --card-bg-solid: #0f172a;
+  --icon-bg: rgba(30, 41, 59, 0.5);
+  --hover-bg: rgba(16, 185, 129, 0.1);
+}
+
+body.light-theme {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #e2e8f0;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-nav: rgba(255, 255, 255, 0.85);
+  --bg-glass: rgba(248, 250, 252, 0.8);
+  
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  
+  --accent: #059669;
+  --accent-hover: #047857;
+  
+  --border-color: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(5, 150, 105, 0.4);
+
+  --card-bg-solid: #636363;
+  --icon-bg: #f1f5f9;
+  --hover-bg: rgba(5, 150, 105, 0.1);
+}
+
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 antialiased selection:bg-emerald-500/30;
+    @apply antialiased selection:bg-emerald-500/30;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
 }
