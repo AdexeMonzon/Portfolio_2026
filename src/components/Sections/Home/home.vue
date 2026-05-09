@@ -12,7 +12,7 @@
             <div class="hero-container">
                 <a href="#projects" class="hero-side-link left-link">
                     <FuzzyText :color="isLightMode ? '#000000' : '#ffffff'" fontSize="clamp(1rem, 5vw, 3.5rem)" fontFamily="'Michroma', sans-serif"
-                    :hoverIntensity="0.2" :baseIntensity="0.1" :enableHover="true">Proyectos</FuzzyText>
+                    :hoverIntensity="0.2" :baseIntensity="0" :enableHover="true">Proyectos</FuzzyText>
                 </a>
 
                 <div class="hero-image-container">
@@ -25,7 +25,7 @@
 
                 <a href="#contact" class="hero-side-link right-link">
                     <FuzzyText :color="isLightMode ? '#000000' : '#ffffff'" fontSize="clamp(1rem, 5vw, 3.5rem)" fontFamily="'Michroma', sans-serif"
-                    :hoverIntensity="0.2" :baseIntensity="0.1" :enableHover="true">Contactar</FuzzyText>
+                    :hoverIntensity="0.2" :baseIntensity="0" :enableHover="true">Contactar</FuzzyText>
                 </a>
             </div>
         </section>
@@ -235,7 +235,7 @@ export default {
     height: auto;
     object-fit: contain;
     transition: transform 0.5s ease, filter 0.5s ease;
-    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5)) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.3)); /* Simplified for mobile */
     -webkit-mask-image: 
     linear-gradient(to bottom, black 70%, transparent 100%),
     linear-gradient(to left, black 70%, transparent 100%),
@@ -252,6 +252,10 @@ export default {
 }
 
 @media (min-width: 768px) {
+    .hero-image {
+        max-width: 24rem;
+        filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5)) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+    }
     .hero-image {
         max-width: 24rem;
     }

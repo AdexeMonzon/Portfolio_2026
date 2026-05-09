@@ -180,12 +180,16 @@ const init = async () => {
       currentIntensity = targetIntensity;
     }
 
-    for (let y = 0; y < offscreen.height; y++) {
-      const dx = props.direction !== 'vertical' ? (Math.random() - 0.5) * currentIntensity * props.fuzzRange : 0;
-      const dy =
-        props.direction !== 'horizontal' ? (Math.random() - 0.5) * currentIntensity * props.fuzzRange * 0.5 : 0;
+    if (currentIntensity <= 0.001) {
+      ctx.drawImage(offscreen, 0, 0);
+    } else {
+      for (let y = 0; y < offscreen.height; y++) {
+        const dx = props.direction !== 'vertical' ? (Math.random() - 0.5) * currentIntensity * props.fuzzRange : 0;
+        const dy =
+          props.direction !== 'horizontal' ? (Math.random() - 0.5) * currentIntensity * props.fuzzRange * 0.5 : 0;
 
-      ctx.drawImage(offscreen, 0, y, offscreen.width, 1, dx, y + dy, offscreen.width, 1);
+        ctx.drawImage(offscreen, 0, y, offscreen.width, 1, dx, y + dy, offscreen.width, 1);
+      }
     }
 
     animationFrameId = requestAnimationFrame(run);
