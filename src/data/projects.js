@@ -3,7 +3,7 @@ export const projectsData = [
         id: 1, 
         title: 'Autoclean', 
         category: 'Web', 
-        img: '/clean.PNG', 
+        img: '/clean.webp', 
         githubFrontend: 'https://github.com/JoseAAN/taller-coches-frontend', 
         githubBackend: 'https://github.com/JoseAAN/taller-coches-backend', 
         website: 'https://google.com', 
