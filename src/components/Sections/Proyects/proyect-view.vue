@@ -3,7 +3,7 @@
 
         <div class="proyects-title-container title-container">
             <p class="proyects-title">
-                Mis <br> <span class="text-emerald">Proyectos</span>
+                Mis <br> <ShinyText text="Proyectos" class="text-emerald" color="var(--accent)" shineColor="#B5FFE3" :speed="3" />
             </p>
         </div>
 
@@ -39,13 +39,15 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProjectDetails from './ProjectDetails.vue';
 import { projectsData } from '../../../data/projects.js';
+import ShinyText from '../../share/ShinyText.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
     name: 'ProjectsView',
     components: {
-        ProjectDetails
+        ProjectDetails,
+        ShinyText
     },
     data() {
         return {

@@ -50,33 +50,40 @@
             </div>
 
             <div class="contact-form-wrapper">
-                <form class="contact-form">
+                <form class="contact-form" @submit.prevent="sendEmail">
                     <div class="form-glow"></div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" class="form-input" placeholder="Tu nombre">
+                            <label>Nombre *</label>
+                            <input type="text" v-model="formData.user_name" name="user_name" class="form-input" placeholder="Tu nombre" required>
                         </div>
 
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-input" placeholder="tu@email.com">
+                            <label>Email *</label>
+                            <input type="email" v-model="formData.user_email" name="user_email" class="form-input" placeholder="tu@email.com" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Asunto</label>
-                        <input type="text" class="form-input" placeholder="¿De qué trata el mensaje?">
+                        <input type="text" v-model="formData.subject" name="subject" class="form-input" placeholder="¿De qué trata el mensaje?">
                     </div>
 
                     <div class="form-group">
-                        <label>Mensaje</label>
-                        <textarea rows="4" class="form-input form-textarea" placeholder="Cuéntame más..."></textarea>
+                        <label>Mensaje *</label>
+                        <textarea rows="4" v-model="formData.message" name="message" class="form-input form-textarea" placeholder="Cuéntame más..." required></textarea>
                     </div>
 
-                    <button type="button" class="form-submit">
-                        Enviar mensaje
+                    <div v-if="submitStatus === 'success'" class="status-message success">
+                        ¡Mensaje enviado con éxito! Te responderé pronto.
+                    </div>
+                    <div v-if="submitStatus === 'error'" class="status-message error">
+                        Hubo un error al enviar el mensaje. Inténtalo de nuevo.
+                    </div>
+
+                    <button type="submit" class="form-submit" :disabled="isSubmitting">
+                        {{ isSubmitting ? 'Enviando...' : 'Enviar mensaje' }}
                     </button>
                 </form>
             </div>
@@ -87,15 +94,52 @@
 <script>
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import emailjs from '@emailjs/browser';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
     name: 'ContactView',
+    data() {
+        return {
+            formData: {
+                user_name: '',
+                user_email: '',
+                subject: '',
+                message: ''
+            },
+            isSubmitting: false,
+            submitStatus: null
+        }
+    },
     mounted() {
         this.initAnimations();
     },
     methods: {
+        sendEmail() {
+            this.isSubmitting = true;
+            this.submitStatus = null;
+
+            emailjs.send(
+                'service_jf3rprj',
+                'template_vayfjw6',
+                this.formData,
+                'R1Jo10VoZ063qpOkV'
+            )
+            .then((result) => {
+                console.log('SUCCESS!', result.text);
+                this.submitStatus = 'success';
+                this.formData = { user_name: '', user_email: '', subject: '', message: '' };
+                setTimeout(() => this.submitStatus = null, 5000);
+            }, (error) => {
+                console.log('FAILED...', error.text);
+                this.submitStatus = 'error';
+                setTimeout(() => this.submitStatus = null, 5000);
+            })
+            .finally(() => {
+                this.isSubmitting = false;
+            });
+        },
         //animaciones de gsap
         initAnimations() {
             gsap.fromTo(".contact-title",
@@ -277,9 +321,9 @@ export default {
     gap: 1rem;
     padding: 2rem;
     border-radius: 1.5rem;
-    background-color: var(--card-bg-solid);
+    background-color: var(--bg-nav);
     backdrop-filter: blur(12px);
-    border: 1px solid var(--bg-card);
+    border: 1px solid var(--border-color);
     color: var(--text-secondary);
     transition: all 0.3s ease;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -294,8 +338,8 @@ export default {
 
 .contact-card:hover {
     color: var(--accent);
-    border-color: var(--hover-bg);
-    background-color: var(--card-bg-solid);
+    border-color: var(--border-hover);
+    background-color: var(--hover-bg);
 }
 
 .contact-icon-wrapper {
@@ -469,5 +513,32 @@ export default {
 
 .form-submit:active {
     transform: scale(0.98);
+}
+
+.form-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.status-message {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.status-message.success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.status-message.error {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
 }
 </style>

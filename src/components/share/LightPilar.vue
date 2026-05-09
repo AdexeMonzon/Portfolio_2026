@@ -231,7 +231,8 @@ const setup = () => {
         float rnd = noise(gl_FragCoord.xy);
         color -= rnd / 15.0 * uNoiseIntensity;
 
-        gl_FragColor = vec4(color * uIntensity, 1.0);
+        float alpha = clamp(length(color) * 1.5, 0.0, 1.0);
+        gl_FragColor = vec4(color * uIntensity, alpha);
       }
     `;
 

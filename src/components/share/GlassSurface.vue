@@ -121,16 +121,19 @@ const isDarkMode = ref(false);
 const updateDarkMode = () => {
   if (typeof window === 'undefined') return;
 
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  isDarkMode.value = mediaQuery.matches;
+  isDarkMode.value = !document.body.classList.contains('light-theme');
 
-  const handler = (e: MediaQueryListEvent) => {
-    isDarkMode.value = e.matches;
-  };
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'class') {
+        isDarkMode.value = !document.body.classList.contains('light-theme');
+      }
+    });
+  });
 
-  mediaQuery.addEventListener('change', handler);
+  observer.observe(document.body, { attributes: true });
 
-  return () => mediaQuery.removeEventListener('change', handler);
+  return () => observer.disconnect();
 };
 
 // Generate unique IDs for SVG elements

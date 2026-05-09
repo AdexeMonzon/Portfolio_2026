@@ -3,7 +3,7 @@
 
         <div ref="titleContainer" class="experience-title-container">
             <p class="experience-title">
-                Mi <br> <span class="text-emerald">Experiencia</span>
+                Mi <br> <ShinyText text="Experiencia" class="text-emerald" color="var(--accent)" shineColor="#B5FFE3" :speed="3" />
             </p>
         </div>
 
@@ -47,11 +47,15 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { experienceData } from '../../../data/experience.js';
+import ShinyText from '../../share/ShinyText.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
     name: 'Experience',
+    components: {
+        ShinyText
+    },
     data() {
         return {
             experience: experienceData
@@ -262,7 +266,8 @@ export default {
 }
 
 .experience-content {
-    background-color: var(--card-bg-solid);
+    background-color: var(--bg-nav);
+    backdrop-filter: blur(12px);
     border-radius: 1rem;
     padding: 1.5rem;
     border: 1px solid var(--border-color);

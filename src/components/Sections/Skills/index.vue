@@ -3,7 +3,7 @@
 
     <div class="skills-title-container title-container-skills">
       <p class="skills-title">
-        Tecnologías
+        <ShinyText text="Tecnologías" class="text-emerald" color="var(--accent)" shineColor="#B5FFE3" :speed="3" />
       </p>
       <div class="skills-line"></div>
     </div>
@@ -29,11 +29,15 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { technologies } from '../../../data/technologies.js';
+import ShinyText from '../../share/ShinyText.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: 'SkillsView',
+  components: {
+    ShinyText
+  },
   data() {
     return {
       technologies
@@ -187,9 +191,9 @@ export default {
 }
 
 .tech-card:hover {
-  border-color: var(--border-color);
-  background-color: var(--card-bg-solid);
-  box-shadow: 0 0 20px var(--border-color);
+  border-color: var(--border-hover);
+  background-color: var(--hover-bg);
+  box-shadow: 0 0 20px var(--hover-bg);
 }
 
 .tech-icon-wrapper {

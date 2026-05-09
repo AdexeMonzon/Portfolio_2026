@@ -3,7 +3,7 @@
 
     <div ref="titleContainer" class="study-title-container">
       <p class="study-title">
-        Mis <br> <span class="text-emerald">Estudios</span>
+        Mis <br> <ShinyText text="Estudios" class="text-emerald" color="var(--accent)" shineColor="#B5FFE3" :speed="3" />
       </p>
     </div>
 
@@ -52,11 +52,15 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { studiesData } from '../../../data/studies.js';
+import ShinyText from '../../share/ShinyText.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: 'Studies',
+  components: {
+    ShinyText
+  },
   data() {
     return {
       studies: studiesData
@@ -229,7 +233,8 @@ export default {
 }
 
 .study-content {
-  background-color: var(--card-bg-solid);
+  background-color: var(--bg-nav);
+  backdrop-filter: blur(12px);
   border-radius: 1rem;
   padding: 1.5rem;
   border: 1px solid var(--border-color);

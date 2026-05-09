@@ -20,6 +20,7 @@
   --card-bg-solid: #0f172a;
   --icon-bg: rgba(30, 41, 59, 0.5);
   --hover-bg: rgba(16, 185, 129, 0.1);
+  --shine-color: #B5FFE3;
 }
 
 body.light-theme {
@@ -33,15 +34,16 @@ body.light-theme {
   --text-secondary: #334155;
   --text-muted: #64748b;
   
-  --accent: #059669;
-  --accent-hover: #047857;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
   
   --border-color: rgba(0, 0, 0, 0.1);
-  --border-hover: rgba(5, 150, 105, 0.4);
+  --border-hover: rgba(79, 70, 229, 0.4);
 
   --card-bg-solid: #636363;
   --icon-bg: #f1f5f9;
-  --hover-bg: rgba(5, 150, 105, 0.1);
+  --hover-bg: rgba(79, 70, 229, 0.1);
+  --shine-color: #4f46e5;
 }
 
 @layer base {

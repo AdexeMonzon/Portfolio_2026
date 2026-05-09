@@ -3,15 +3,16 @@
         <Navbar />
         
 
-        <LightPilar class="particles-wrapper" topColor="#216006" bottomColor="#00A8F0" :intensity="0.7" :rotationSpeed="0.5"
-            :glowAmount="0.002" :pillarWidth="3" :pillarHeight="0.4" :noiseIntensity="0.5"
-            :pillarRotation="25" :interactive="false" mixBlendMode="screen" />
+        <LightPilar class="particles-wrapper" :topColor="pillarTopColor" :bottomColor="pillarBottomColor" :intensity="0.7" :rotationSpeed="0.5"
+            :glowAmount="0.010" :pillarWidth="3" :pillarHeight="0.4" :noiseIntensity="0.5"
+            :pillarRotation="25" :interactive="false" :mixBlendMode="pillarMixBlendMode"
+            :style="{ opacity: isLightMode ? 0.25 : 1 }" />
 
         <section id="home" class="hero-section">
             <div class="hero-container">
                 <div class="hero-text-container">
                     <h1 class="hero-title">
-                        <span class="hero-title-greeting">Hola, soy</span>
+                        <span class="hero-title-greeting">Encantado, soy</span>
                         <span class="hero-title-name">Adexe Monzón</span>
                     </h1>
 
@@ -76,8 +77,40 @@ export default {
         Swiper,
         LightPilar
     },
+    data() {
+        return {
+            isLightMode: false,
+            themeObserver: null
+        }
+    },
+    computed: {
+        pillarTopColor() {
+            return this.isLightMode ? '#6366f1' : '#216006';
+        },
+        pillarBottomColor() {
+            return this.isLightMode ? '#a855f7' : '#00A8F0';
+        },
+        pillarMixBlendMode() {
+            return this.isLightMode ? 'multiply' : 'screen';
+        }
+    },
     mounted() {
+        this.isLightMode = document.body.classList.contains('light-theme');
+        this.themeObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    this.isLightMode = document.body.classList.contains('light-theme');
+                }
+            });
+        });
+        this.themeObserver.observe(document.body, { attributes: true });
+        
         this.initParticles();
+    },
+    beforeUnmount() {
+        if (this.themeObserver) {
+            this.themeObserver.disconnect();
+        }
     },
     methods: {
         initParticles() {
