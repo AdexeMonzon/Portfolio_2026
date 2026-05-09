@@ -16,21 +16,28 @@
                 <div class="timeline-dot"></div>
 
                 <div class="experience-content">
-                    <div class="experience-content-inner">
+                    <div class="experience-content-inner" @click="toggleDropdown(index)" style="cursor: pointer;">
                         <div class="experience-text">
                             <div class="experience-period">
                                 {{ exp.period }}
                             </div>
                             <h3 class="experience-role">{{ exp.role }}</h3>
                             <h4 class="experience-company">{{ exp.company }} — {{ exp.location }}</h4>
+
+                            <div class="experience-dropdown" :class="{ 'is-open': activeDropdown === index }">
+                                <div class="experience-dropdown-inner">
+                                    <p class="experience-desc">{{ exp.description }}</p>
+                                    <ul class="experience-tasks">
+                                        <li v-for="(task, tIndex) in exp.tasks" :key="tIndex">{{ task }}</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="experience-icon-wrapper">
-                            <svg class="experience-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        <div class="experience-icon-wrapper" :class="{ 'icon-rotated': activeDropdown === index }">
+                            <svg class="experience-icon chevron-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </div>
@@ -58,7 +65,8 @@ export default {
     },
     data() {
         return {
-            experience: experienceData
+            experience: experienceData,
+            activeDropdown: null
         }
     },
     mounted() {
@@ -73,6 +81,12 @@ export default {
         });
     },
     methods: {
+        toggleDropdown(index) {
+            this.activeDropdown = this.activeDropdown === index ? null : index;
+            setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 400);
+        },
         initAnimations() {
             gsap.fromTo(this.$refs.titleContainer,
                 { y: 150, opacity: 0, rotateX: -20, transformPerspective: 500 },
@@ -376,16 +390,64 @@ export default {
     }
 }
 
-.experience-card:hover .experience-icon-wrapper {
+.experience-icon-wrapper.icon-rotated {
+    transform: rotate(180deg);
+    background-color: var(--hover-bg);
     color: var(--accent);
     border-color: var(--hover-bg);
-    transform: rotate(12deg);
+}
+
+.experience-card:hover .experience-icon-wrapper:not(.icon-rotated) {
+    color: var(--accent);
+    border-color: var(--hover-bg);
+    transform: translateY(-0.25rem);
     background-color: var(--hover-bg);
 }
 
 .experience-icon {
     width: 2.5rem;
     height: 2.5rem;
+    transition: transform 0.3s ease;
+}
+
+.experience-dropdown {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease-out;
+    width: 100%;
+}
+
+.experience-dropdown.is-open {
+    grid-template-rows: 1fr;
+}
+
+.experience-dropdown-inner {
+    overflow: hidden;
+}
+
+.experience-desc {
+    color: var(--text-secondary);
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.experience-tasks {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.experience-tasks li {
+    margin-bottom: 0.5rem;
+    list-style-type: disc;
+}
+
+.experience-tasks li::marker {
+    color: var(--accent);
 }
 
 .experience-spacer {
