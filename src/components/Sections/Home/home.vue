@@ -10,31 +10,29 @@
 
         <section id="home" class="hero-section">
             <div class="hero-container">
-                <div class="hero-text-container">
-                    <h1 class="hero-title">
-                        <span class="hero-title-greeting">Encantado, soy</span>
-                        <span class="hero-title-name">Adexe Monzón</span>
-                    </h1>
+                <a href="#projects" class="hero-side-link left-link">
+                    <FuzzyText :color="isLightMode ? '#000000' : '#ffffff'" fontSize="clamp(1.2rem, 10vw, 6rem)" fontFamily="'Michroma', sans-serif"
+                    :hoverIntensity="0.2" :baseIntensity="0.1" :enableHover="true">Proyectos</FuzzyText>
+                </a>
 
-                    <div class="hero-description">
-                        <p>
-                            Técnico en <strong class="hero-highlight">Desarrollo de Aplicaciones Web</strong> con una
-                            gran pasión por la creación de software.
-                        </p>
-                        <p class="hero-subdescription">
-                            Mi objetivo principal es aportar valor a las empresas mediante soluciones de calidad.
-                            Destaco por mi <span class="hero-subhighlight">responsabilidad, ambición y capacidad de
-                                trabajo en equipo</span>, contribuyendo activamente al éxito de cada proyecto.
-                        </p>
+                <div class="hero-image-container">
+                    <div class="glitch-wrapper">
+                        <img src="/foto curri luces colores.png" alt="Adexe Monzón Santana" class="hero-image glitch-base">
+                        <img src="/foto curri luces colores.png" alt="" class="hero-image glitch-layer glitch-layer-1" aria-hidden="true">
+                        <img src="/foto curri luces colores.png" alt="" class="hero-image glitch-layer glitch-layer-2" aria-hidden="true">
                     </div>
                 </div>
 
-                <div class="hero-image-container">
-                    <img src="/foto curri luces colores.png" alt="Adexe Monzón Santana" class="hero-image">
-                </div>
+                <a href="#contact" class="hero-side-link right-link">
+                    <FuzzyText :color="isLightMode ? '#000000' : '#ffffff'" fontSize="clamp(1.2rem, 10vw, 6rem)" fontFamily="'Michroma', sans-serif"
+                    :hoverIntensity="0.2" :baseIntensity="0.1" :enableHover="true">Contactar</FuzzyText>
+                </a>
             </div>
         </section>
 
+        <div class="section-wrapper">
+            <About />
+        </div>
         <div class="section-wrapper">
             <Proyects />
         </div>
@@ -56,6 +54,9 @@
 
 <script>
 import Navbar from '../../share/nav-component.vue';
+import ShinyText from '../../share/ShinyText.vue';
+import FuzzyText from '../../share/FuzzyText.vue';
+import About from '../About/index.vue';
 import Proyects from '../Proyects/index.vue';
 import Studies from '../Studies/index.vue';
 import Experience from '../Experience/index.vue';
@@ -69,6 +70,9 @@ export default {
     name: 'Home',
     components: {
         Navbar,
+        ShinyText,
+        FuzzyText,
+        About,
         Skills,
         Proyects,
         Studies,
@@ -144,161 +148,177 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 6rem 1.5rem 3rem 1.5rem;
+    padding: 3rem 0 1rem 0;
     overflow: hidden;
 }
 
 @media (min-width: 768px) {
     .hero-section {
-        padding-left: 3rem;
-        padding-right: 3rem;
+        padding: 6rem 0 3rem 0;
     }
 }
 
 .hero-container {
     width: 100%;
-    max-width: 64rem;
+    max-width: 100%;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
-    gap: 3rem;
+    gap: 1.5rem;
+    position: relative;
+    padding: 2rem 0;
 }
 
 @media (min-width: 1024px) {
     .hero-container {
         flex-direction: row;
+        padding: 0 1vw;
+        min-height: 60vh;
     }
 }
 
-.hero-text-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    z-index: 10;
-}
-
-@media (min-width: 1024px) {
-    .hero-text-container {
-        align-items: flex-start;
-        text-align: left;
-    }
-}
-
-.hero-title {
-    font-size: 2.25rem;
+.hero-side-link {
+    z-index: 20;
+    font-size: 3rem;
     font-weight: 700;
-    letter-spacing: -0.025em;
-    line-height: 1.25;
-    margin: 0;
-}
-
-@media (min-width: 640px) {
-    .hero-title {
-        font-size: 3rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .hero-title {
-        font-size: 3.75rem;
-    }
-}
-
-.hero-title-greeting {
-    display: block;
-}
-
-.hero-title-name {
-    display: block;
-    color: var(--accent);
-    margin-top: 0.5rem;
-}
-
-.hero-description {
-    margin-top: 1.5rem;
-    font-size: 1.125rem;
-    color: var(--text-muted);
-    max-width: 32rem;
-    line-height: 1.625;
+    text-decoration: none;
+    transition: transform 0.3s ease;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    letter-spacing: -0.02em;
 }
 
 @media (min-width: 768px) {
-    .hero-description {
-        font-size: 1.25rem;
+    .hero-side-link {
+        font-size: 4rem;
     }
 }
 
 @media (min-width: 1024px) {
-    .hero-description {
-        align-items: flex-start;
+    .hero-side-link {
+        font-size: 5rem;
     }
 }
 
-.hero-description p {
-    margin: 0;
+.hero-side-link:hover {
+    transform: scale(1.05);
 }
 
-.hero-highlight {
-    color: var(--accent);
-    font-weight: 500;
-}
-
-.hero-subdescription {
-    font-size: 1rem;
-}
-
-@media (min-width: 768px) {
-    .hero-subdescription {
-        font-size: 1.125rem;
-    }
-}
-
-.hero-subhighlight {
-    color: var(--text-secondary);
+.text-primary {
+    color: var(--text-primary);
 }
 
 .hero-image-container {
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
-    max-width: 28rem;
     z-index: 10;
 }
 
 @media (min-width: 1024px) {
     .hero-image-container {
-        justify-content: flex-end;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        max-width: 45rem;
     }
 }
 
 .hero-image {
     width: 100%;
-    max-width: 16rem;
+    max-width: 18rem;
     height: auto;
     object-fit: contain;
     transition: transform 0.5s ease, filter 0.5s ease;
     filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5)) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
-    mask-image: radial-gradient(ellipse at center, black 50%, transparent 95%);
+    -webkit-mask-image: 
+    linear-gradient(to bottom, black 70%, transparent 100%),
+    linear-gradient(to left, black 70%, transparent 100%),
+    linear-gradient(to right, black 70%, transparent 100%);
+
+    mask-image: 
+    linear-gradient(to bottom, black 70%, transparent 100%),
+    linear-gradient(to left, black 80%, transparent 100%),
+    linear-gradient(to right, black 80%, transparent 100%);
+
+    -webkit-mask-composite: source-in; 
+  mask-composite: intersect;
     z-index: 10;
 }
 
 @media (min-width: 768px) {
     .hero-image {
-        max-width: 22rem;
+        max-width: 24rem;
     }
 }
 
-.hero-image:hover {
+@media (min-width: 1024px) {
+    .hero-image {
+        max-width: 35rem;
+    }
+}
+
+.glitch-wrapper {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    transition: transform 0.5s ease;
+}
+
+.glitch-wrapper:hover {
     transform: translateY(-0.3rem) scale(1.01);
+}
+
+.glitch-base {
+    position: relative;
+    z-index: 10;
+}
+
+.glitch-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+    pointer-events: none;
+    opacity: 0.8;
+    mix-blend-mode: hard-light;
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+}
+
+.glitch-layer-1 {
+    filter: drop-shadow(-5px 0 0 var(--accent)) drop-shadow(5px 0 0 magenta);
+    animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+
+.glitch-layer-2 {
+    filter: drop-shadow(5px 0 0 cyan) drop-shadow(-5px 0 0 red);
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0%, 80% { clip-path: polygon(0 0, 0 0, 0 0, 0 0); transform: translate(0); }
+  83% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); transform: translate(-10px); }
+  88% { clip-path: polygon(0 40%, 100% 40%, 100% 50%, 0 50%); transform: translate(10px); }
+  94% { clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); transform: translate(-10px); }
+  98%, 100% { clip-path: polygon(0 0, 0 0, 0 0, 0 0); transform: translate(0); }
+}
+
+@keyframes glitch-anim-2 {
+  0%, 75% { clip-path: polygon(0 0, 0 0, 0 0, 0 0); transform: translate(0); }
+  80% { clip-path: polygon(0 25%, 100% 25%, 100% 35%, 0 35%); transform: translate(10px); }
+  86% { clip-path: polygon(0 55%, 100% 55%, 100% 65%, 0 65%); transform: translate(-10px); }
+  92% { clip-path: polygon(0 75%, 100% 75%, 100% 85%, 0 85%); transform: translate(10px); }
+  96%, 100% { clip-path: polygon(0 0, 0 0, 0 0, 0 0); transform: translate(0); }
+}
+
+.glitch-wrapper:hover .hero-image {
     filter: drop-shadow(0 15px 20px var(--border-hover));
 }
 

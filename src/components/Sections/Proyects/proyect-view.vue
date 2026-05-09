@@ -1,5 +1,5 @@
 <template>
-    <section ref="scrollWrapper" class="proyects-section">
+    <section id="projects" ref="scrollWrapper" class="proyects-section">
 
         <div class="proyects-title-container title-container">
             <p class="proyects-title">
