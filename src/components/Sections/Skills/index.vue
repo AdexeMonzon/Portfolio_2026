@@ -103,6 +103,10 @@ export default {
   color: var(--text-primary);
   font-family: sans-serif;
   padding: 6rem 5vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media (min-width: 768px) {

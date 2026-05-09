@@ -128,7 +128,7 @@ export default {
     backdrop-filter: blur(4px);
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 1.5rem;
     overflow-y: auto;
     font-family: sans-serif;
@@ -142,7 +142,7 @@ export default {
 }
 
 .close-btn {
-    position: absolute;
+    position: fixed;
     top: 1.5rem;
     right: 1.5rem;
     color: var(--text-muted);
@@ -180,17 +180,18 @@ export default {
     max-width: 72rem;
     width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 3rem;
+    flex-direction: column-reverse;
+    gap: 2rem;
     align-items: center;
-    margin-top: 2.5rem;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
 }
 
 @media (min-width: 1024px) {
     .detail-container {
         flex-direction: row;
         gap: 5rem;
-        margin-top: 0;
+        margin-top: 6rem;
     }
 }
 
@@ -344,7 +345,7 @@ export default {
 .detail-image-container {
     position: relative;
     width: 100%;
-    max-width: 28rem;
+    max-width: 100%;
     border-radius: 1rem;
     overflow: hidden;
     background-color: var(--bg-secondary);

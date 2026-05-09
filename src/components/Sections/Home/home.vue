@@ -123,6 +123,9 @@ export default {
 .main-container {
     color: var(--text-primary);
     font-family: sans-serif;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 .particles-wrapper {
@@ -158,7 +161,8 @@ export default {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    text-align: center;
     gap: 3rem;
 }
 
@@ -222,12 +226,19 @@ export default {
     line-height: 1.625;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
 }
 
 @media (min-width: 768px) {
     .hero-description {
         font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-description {
+        align-items: flex-start;
     }
 }
 

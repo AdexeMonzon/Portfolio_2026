@@ -175,7 +175,10 @@ export default {
     color: var(--text-primary);
     font-family: sans-serif;
     min-height: 100vh;
-    padding: 8rem 5vw;
+    padding: 6rem 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 @media (min-width: 768px) {
@@ -307,16 +310,15 @@ export default {
     position: relative;
     z-index: 10;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 @media (min-width: 768px) {
     .experience-content-inner {
-        flex-direction: row;
-        align-items: center;
+        gap: 2rem;
     }
 }
 
@@ -338,7 +340,7 @@ export default {
 
 .experience-role {
     color: var(--text-primary);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
     margin-top: 0;
@@ -370,12 +372,12 @@ export default {
 }
 
 .experience-icon-wrapper {
-    display: none;
+    display: flex;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    width: 5rem;
-    height: 5rem;
+    width: 3.5rem;
+    height: 3.5rem;
     background-color: var(--icon-bg);
     border-radius: 1rem;
     border: 1px solid var(--border-color);
@@ -386,7 +388,8 @@ export default {
 
 @media (min-width: 768px) {
     .experience-icon-wrapper {
-        display: flex;
+        width: 5rem;
+        height: 5rem;
     }
 }
 
@@ -405,9 +408,16 @@ export default {
 }
 
 .experience-icon {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
     transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .experience-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
 }
 
 .experience-dropdown {
@@ -451,12 +461,7 @@ export default {
 }
 
 .experience-spacer {
-    height: 10vh;
+    height: 2vh;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top: 1px solid var(--border-color);
-    margin-top: 8rem;
 }
 </style>

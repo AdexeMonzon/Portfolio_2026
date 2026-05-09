@@ -146,7 +146,10 @@ export default {
   color: var(--text-primary);
   font-family: sans-serif;
   min-height: 100vh;
-  padding: 8rem 5vw;
+  padding: 6rem 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media (min-width: 768px) {
@@ -370,12 +373,7 @@ export default {
 }
 
 .study-spacer {
-  height: 30vh;
+  height: 2vh;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top: 1px solid var(--border-color);
-  margin-top: 8rem;
 }
 </style>

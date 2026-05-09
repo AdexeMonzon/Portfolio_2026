@@ -24,6 +24,9 @@
                     <a href="#studies" class="nav-item">Estudios</a>
                     <a href="#experience" class="nav-item">Experiencia</a>
                     <a href="#contact" class="nav-item">Contacto</a>
+                </div>
+
+                <div class="flex items-center gap-2">
                     <button @click="toggleTheme" class="theme-toggle" aria-label="Cambiar tema">
                         <svg v-if="isDark" class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -32,11 +35,33 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                         </svg>
                     </button>
+
+                    <button @click="toggleMobileMenu" class="mobile-menu-btn" aria-label="Menú">
+                        <svg v-if="!isMobileMenuOpen" class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg v-else class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 </div>
 
                 <div class="nav-spacer"></div>
             </div>
         </GlassSurface>
+
+        <transition name="mobile-menu">
+            <div v-if="isMobileMenuOpen" class="mobile-menu-overlay pointer-events-auto">
+                <div class="mobile-links">
+                    <a href="#home" class="nav-item-mobile" @click="toggleMobileMenu">Inicio</a>
+                    <a href="#skills" class="nav-item-mobile" @click="toggleMobileMenu">Tecnologías</a>
+                    <a href="#projects" class="nav-item-mobile" @click="toggleMobileMenu">Proyectos</a>
+                    <a href="#studies" class="nav-item-mobile" @click="toggleMobileMenu">Estudios</a>
+                    <a href="#experience" class="nav-item-mobile" @click="toggleMobileMenu">Experiencia</a>
+                    <a href="#contact" class="nav-item-mobile" @click="toggleMobileMenu">Contacto</a>
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -52,7 +77,8 @@ export default {
 
     data() {
         return {
-            isDark: true
+            isDark: true,
+            isMobileMenuOpen: false
         };
     },
 
@@ -78,6 +104,15 @@ export default {
             } else {
                 document.body.classList.add('light-theme');
                 localStorage.setItem('theme', 'light');
+            }
+        },
+
+        toggleMobileMenu() {
+            this.isMobileMenuOpen = !this.isMobileMenuOpen;
+            if (this.isMobileMenuOpen) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
             }
         },
 
@@ -229,5 +264,86 @@ export default {
     .nav-spacer {
         display: block;
     }
+}
+
+.mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    color: var(--text-secondary);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+@media (min-width: 768px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+}
+
+.mobile-menu-btn:hover {
+    color: var(--text-primary);
+    background-color: var(--border-color);
+}
+
+.mobile-menu-overlay {
+    position: fixed;
+    top: 5rem;
+    left: 5%;
+    right: 5%;
+    background-color: var(--bg-nav);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 40;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+    .mobile-menu-overlay {
+        display: none;
+    }
+}
+
+.mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-item-mobile {
+    color: var(--text-secondary);
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    font-size: 1.125rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.nav-item-mobile:hover, .nav-item-mobile:active {
+    color: var(--text-primary);
+    background-color: var(--border-color);
+}
+
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-enter-from,
+.mobile-menu-leave-to {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
 }
 </style>

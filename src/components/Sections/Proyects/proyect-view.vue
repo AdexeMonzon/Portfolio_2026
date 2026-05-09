@@ -116,7 +116,10 @@ export default {
     color: var(--text-primary);
     font-family: sans-serif;
     min-height: 100vh;
-    padding: 8rem 5vw;
+    padding: 6rem 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 @media (min-width: 768px) {
@@ -286,11 +289,7 @@ export default {
 }
 
 .proyects-spacer {
-    height: 20vh;
+    height: 2vh;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 5rem;
 }
 </style>
