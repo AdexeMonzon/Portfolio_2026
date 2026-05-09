@@ -89,7 +89,8 @@ const init = async () => {
 
   const offscreen = document.createElement('canvas');
   const offCtx = offscreen.getContext('2d')!;
-  offCtx.font = fontString;
+  const validFontString = `${props.fontWeight} ${numericFontSize}px ${computedFontFamily}`;
+  offCtx.font = validFontString;
   offCtx.textBaseline = 'alphabetic';
 
   let totalWidth = 0;
@@ -110,7 +111,7 @@ const init = async () => {
   offscreen.width = Math.ceil(totalWidth) + 20;
   offscreen.height = height;
 
-  offCtx.font = fontString;
+  offCtx.font = validFontString;
   offCtx.textBaseline = 'alphabetic';
 
   if (props.gradient && props.gradient.length >= 2) {

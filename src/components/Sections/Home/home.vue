@@ -11,7 +11,7 @@
         <section id="home" class="hero-section">
             <div class="hero-container">
                 <a href="#projects" class="hero-side-link left-link">
-                    <FuzzyText :color="isLightMode ? '#000000' : '#ffffff'" fontSize="clamp(1.2rem, 10vw, 6rem)" fontFamily="'Michroma', sans-serif"
+                    <FuzzyText :color="isLightMode ? '#000000' : '#ffffff'" fontSize="clamp(1rem, 5vw, 3.5rem)" fontFamily="'Michroma', sans-serif"
                     :hoverIntensity="0.2" :baseIntensity="0.1" :enableHover="true">Proyectos</FuzzyText>
                 </a>
 
@@ -24,7 +24,7 @@
                 </div>
 
                 <a href="#contact" class="hero-side-link right-link">
-                    <FuzzyText :color="isLightMode ? '#000000' : '#ffffff'" fontSize="clamp(1.2rem, 10vw, 6rem)" fontFamily="'Michroma', sans-serif"
+                    <FuzzyText :color="isLightMode ? '#000000' : '#ffffff'" fontSize="clamp(1rem, 5vw, 3.5rem)" fontFamily="'Michroma', sans-serif"
                     :hoverIntensity="0.2" :baseIntensity="0.1" :enableHover="true">Contactar</FuzzyText>
                 </a>
             </div>
