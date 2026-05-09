@@ -7,7 +7,7 @@ export const projectsData = [
         githubFrontend: 'https://github.com/JoseAAN/taller-coches-frontend', 
         githubBackend: 'https://github.com/JoseAAN/taller-coches-backend', 
         website: 'https://google.com', 
-        images: ['grande.png' ,'grande2.png', 'grande3.png' ,'/ancho.png', 'ancho2_peque.PNG'],
+        images: ['grande.webp' ,'grande2.webp', 'grande3.webp' ,'/ancho.webp', 'ancho2_peque.webp'],
         desc: `
         Autoclean es una plataforma que permite a los usuarios gestionar sus servicios de limpieza 
         de manera eficiente y segura. Con Autoclean, los usuarios pueden encontrar servicios de limpieza 

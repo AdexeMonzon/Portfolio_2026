@@ -17,9 +17,9 @@
 
                 <div class="hero-image-container">
                     <div class="glitch-wrapper">
-                        <img src="/foto curri luces colores.png" alt="Adexe Monzón Santana" class="hero-image glitch-base">
-                        <img src="/foto curri luces colores.png" alt="" class="hero-image glitch-layer glitch-layer-1" aria-hidden="true">
-                        <img src="/foto curri luces colores.png" alt="" class="hero-image glitch-layer glitch-layer-2" aria-hidden="true">
+                        <img src="/foto curri luces colores.webp" alt="Adexe Monzón Santana" class="hero-image glitch-base">
+                        <img src="/foto curri luces colores.webp" alt="" class="hero-image glitch-layer glitch-layer-1" aria-hidden="true">
+                        <img src="/foto curri luces colores.webp" alt="" class="hero-image glitch-layer glitch-layer-2" aria-hidden="true">
                     </div>
                 </div>
 
