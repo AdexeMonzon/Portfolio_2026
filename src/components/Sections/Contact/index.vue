@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="contact-cards">
-                    <a href="mailto:adexems.projects@gmail.com" class="contact-card">
+                    <a href="/CV_Adexe_Monzon.pdf" download="CV_Adexe_Monzon.pdf" class="contact-card">
                         <div class="contact-icon-wrapper">
                             <svg class="contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
